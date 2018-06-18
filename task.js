@@ -14,4 +14,26 @@ task.toString = function(){
 	return this.title + ' ' + this.description;
 }
 
-console.log(task.toString());
+Object.defineProperty(task, 'toString', {
+	value:function(){								//define the value of the property
+		return this.title + ' ' + this.description;
+	},
+	writable: true,  //Will restrict the property to be re-assigned any other value or rewrite.
+	enumerable: true,
+	configurable: true // Nobody can redefine your property again
+	
+});
+
+//Lets understand inheritence using object.create method
+var urgentTask = Object.create(task);
+Object.defineProperty(urgentTask, 'toString', {
+	value:function(){								//define the value of the property
+		return this.title + ' is urgent task ' + this.description;
+	},
+	writable: true,  //Will restrict the property to be re-assigned any other value or rewrite.
+	enumerable: true,
+	configurable: true // Nobody can redefine your property again
+	
+});
+
+console.log(urgentTask.toString());
